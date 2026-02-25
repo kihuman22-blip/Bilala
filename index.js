@@ -262,18 +262,9 @@
     wrapper.classList.add('hotspot');
     wrapper.classList.add('info-hotspot');
 
-    // --- LOGIK FÜR DEIN BILD POP-UP ---
-    if (hotspot.title && hotspot.title.includes("Pizza")) {
-      wrapper.addEventListener('click', function() {
-        var modal = document.getElementById('pizza-popup');
-        if (modal) {
-          modal.style.display = 'block';
-        }
-      });
-    }
-
     var header = document.createElement('div');
     header.classList.add('info-hotspot-header');
+    
     var iconWrapper = document.createElement('div');
     iconWrapper.classList.add('info-hotspot-icon-wrapper');
     var icon = document.createElement('img');
@@ -301,6 +292,7 @@
 
     var text = document.createElement('div');
     text.classList.add('info-hotspot-text');
+    // WICHTIG: Erlaubt HTML (Bilder) in der Info-Box
     text.innerHTML = hotspot.text;
 
     wrapper.appendChild(header);
@@ -312,10 +304,6 @@
     document.body.appendChild(modal);
 
     var toggle = function() {
-      // Wenn es die Pizza ist, soll das Standard-Fenster nicht zusätzlich öffnen
-      if (hotspot.title && hotspot.title.includes("Pizza")) {
-          return; 
-      }
       wrapper.classList.toggle('visible');
       modal.classList.toggle('visible');
     };
