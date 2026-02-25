@@ -80,16 +80,35 @@ html, body {
 .info-hotspot .info-hotspot-text {
   position: absolute;
   width: 300px;
-  height: auto;
-  min-height: 200px; /* Platz für die Pizza */
+  height: 200px; /* Hier stellen wir die Größe für das Bild fest */
   top: 40px;
   left: 0;
   padding: 10px;
   background-color: rgb(58,68,84);
-  border-radius: 0 0 5px 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s;
+  
+  /* --- BILD-LOGIK --- */
+  background-image: url('img/pizza.jpg'); /* Dein Bild aus dem img-Ordner */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Das hier versteckt den Text-Code aus dem Marzipano-Tool, 
+     damit man nur das Bild sieht */
+  color: transparent !important;
+  font-size: 0 !important;
+
+  /* Deine Original-Animation bleibt erhalten */
+  -ms-transform: perspective(200px) rotateX(-89.999deg);
+  -webkit-transform: perspective(200px) rotateX(-89.999deg);
+  transform: perspective(200px) rotateX(-89.999deg);
+  -ms-transform-origin: 50% 0 0;
+  -webkit-transform-origin: 50% 0 0;
+  transform-origin: 50% 0 0;
+  -webkit-transition: transform 0.3s, visibility 0s 0.3s;
+  transition: transform 0.3s, visibility 0s 0.3s;
 }
 
 .info-hotspot.visible .info-hotspot-text {
