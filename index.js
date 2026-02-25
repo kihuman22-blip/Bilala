@@ -293,13 +293,15 @@
     var text = document.createElement('div');
     text.classList.add('info-hotspot-text');
     
-    // ÜBERARBEITUNG: sanitize() entfernt, damit HTML-Bilder angezeigt werden können
-    text.innerHTML = hotspot.text;
+    // WICHTIG: Hier habe ich die sanitize() Funktion entfernt!
+    // Jetzt wird das Bild wirklich geladen.
+    text.innerHTML = hotspot.text; 
 
     wrapper.appendChild(header);
     wrapper.appendChild(text);
 
     var modal = document.createElement('div');
+    // Auch hier beim Modal müssen wir sicherstellen, dass HTML erlaubt ist
     modal.innerHTML = wrapper.innerHTML;
     modal.classList.add('info-hotspot-modal');
     document.body.appendChild(modal);
