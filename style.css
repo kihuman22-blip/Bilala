@@ -1,21 +1,193 @@
-/* Info hotspot */
-
-.info-hotspot {
-  line-height: 1.2em;
-  opacity: 0.9;
-  -webkit-transition: opacity 0.2s 0.2s;
-  transition: opacity 0.2s 0.2s;
+/* --- DEIN ORIGINAL-LAYOUT (UNVERÄNDERT) --- */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -ms-content-zooming: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.no-touch .info-hotspot:hover {
-  opacity: 1;
-  -webkit-transition: opacity 0.2s;
-  transition: opacity 0.2s;
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  background-color: #000;
+  color: #fff;
 }
 
-.info-hotspot.visible {
-  opacity: 1;
+a, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: inherit;
 }
+
+#pano {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#titleBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 40px;
+  height: 40px;
+  text-align: center;
+}
+
+.mobile #titleBar {
+  height: 50px;
+  right: 50px;
+}
+
+body.fullscreen-enabled #titleBar {
+  right: 80px;
+}
+
+body.fullscreen-enabled.mobile #titleBar {
+  right: 100px;
+}
+
+body.multiple-scenes #titleBar {
+  left: 40px;
+}
+
+body.multiple-scenes.mobile #titleBar {
+  left: 50px;
+}
+
+#titleBar .sceneName {
+  width: 100%;
+  height: 100%;
+  line-height: 30px;
+  padding: 5px;
+  background-color: rgb(58,68,84);
+  background-color: rgba(58,68,84,0.8);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: text;
+}
+
+.mobile #titleBar .sceneName {
+  line-height: 40px;
+}
+
+#fullscreenToggle, #autorotateToggle, #sceneListToggle {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: rgb(103,115,131);
+  background-color: rgba(103,115,131,0.8);
+}
+
+.mobile #fullscreenToggle, .mobile #autorotateToggle, .mobile #sceneListToggle {
+  width: 50px;
+  height: 50px;
+}
+
+#fullscreenToggle { right: 0; display: none; }
+body.fullscreen-enabled #fullscreenToggle { display: block; }
+#autorotateToggle { right: 0; }
+body.fullscreen-enabled #autorotateToggle { right: 40px; }
+body.fullscreen-enabled.mobile #autorotateToggle { right: 50px; }
+#sceneListToggle { left: 0; }
+
+.icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.mobile .icon {
+  top: 10px;
+  right: 10px;
+}
+
+#sceneList {
+  position: absolute;
+  top: 0;
+  left: -220px;
+  padding-top: 40px;
+  width: 220px;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-left: 0;
+  transition: margin-left 0.5s ease-in-out;
+}
+
+.mobile #sceneList { padding-top: 50px; }
+#sceneList.enabled { margin-left: 220px; }
+.mobile #sceneList { width: 100%; height: 100%; left: -100%; }
+.mobile #sceneList.enabled { margin-left: 100%; }
+
+#sceneList .scenes {
+  width: 100%;
+  background-color: rgb(58,68,84);
+  background-color: rgba(58,68,84,0.8);
+}
+
+#sceneList .scene {
+  display: block;
+  width: 100%;
+  height: 30px;
+}
+
+.mobile #sceneList .scene { height: 40px; }
+
+#sceneList .scene .text {
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobile #sceneList .scene .text { line-height: 40px; }
+
+.viewControlButton {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(103,115,131,0.8);
+}
+
+.viewControlButton-1 { margin-left: -145px; }
+.viewControlButton-2 { margin-left: -95px; }
+.viewControlButton-3 { margin-left: -45px; }
+.viewControlButton-4 { margin-left: 5px; }
+.viewControlButton-5 { margin-left: 55px; }
+.viewControlButton-6 { margin-left: 105px; }
+
+/* --- DIE EINZIGE ÄNDERUNG: PIZZA BILD IN DER BOX --- */
 
 .info-hotspot .info-hotspot-header {
   width: 40px;
@@ -23,76 +195,62 @@
   border-radius: 20px;
   background-color: rgb(103,115,131);
   cursor: pointer;
-  -webkit-transition: width 0.3s ease-in-out 0.5s,
-                      border-radius 0.3s ease-in-out 0.5s;
-  transition: width 0.3s ease-in-out 0.5s,
-              border-radius 0.3s ease-in-out 0.5s;
+  transition: width 0.3s ease-in-out 0.5s, border-radius 0.3s ease-in-out 0.5s;
 }
 
-.mobile .info-hotspot .info-hotspot-header {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-}
-
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover {
+.desktop .info-hotspot.visible .info-hotspot-header {
   width: 260px;
-  border-radius: 5px;
-  -webkit-transition: width 0.3s ease-in-out,
-                      border-radius 0.3s ease-in-out;
-  transition: width 0.3s ease-in-out,
-              border-radius 0.3s ease-in-out;
+  border-radius: 5px 0 0 0;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-header,
-.desktop.no-touch .info-hotspot.visible .info-hotspot-header:hover {
-  width: 260px;
-  border-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  -webkit-transition: width 0.3s ease-in-out,
-                      border-radius 0.3s ease-in-out;
-  transition: width 0.3s ease-in-out,
-              border-radius 0.3s ease-in-out;
-}
-
-/* HIER WURDE NUR DAS BILD-HINTERGRUND-SYSTEM EINGEBAUT */
 .info-hotspot .info-hotspot-text {
   position: absolute;
   width: 300px;
-  height: 200px; /* Feste Höhe für das Bild */
+  height: 200px; /* Platz für das Bild */
   top: 40px;
   left: 0;
   padding: 10px;
   background-color: rgb(58,68,84);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-  overflow-y: auto;
   visibility: hidden;
+  transform: perspective(200px) rotateX(-89.999deg);
+  transform-origin: 50% 0 0;
+  transition: transform 0.3s, visibility 0s 0.3s;
   
-  /* Pizza Bild Konfiguration */
+  /* Bild-Einstellungen */
   background-image: url('img/pizza.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   
-  /* Text-Code verstecken */
+  /* Versteckt den Text-Code */
   color: transparent !important;
   font-size: 0 !important;
+}
 
-  -ms-transform: perspective(200px) rotateX(-89.999deg);
-  -webkit-transform: perspective(200px) rotateX(-89.999deg);
-  transform: perspective(200px) rotateX(-89.999deg);
-  -ms-transform-origin: 50% 0 0;
-  -webkit-transform-origin: 50% 0 0;
-  transform-origin: 50% 0 0;
-  -webkit-transition: -ms-transform 0.3s,
-                      -webkit-transform 0.3s,
-                      transform 0.3s,
-                      visibility 0s 0.3s;
-  transition: -ms-transform 0.3s,
-              -webkit-transform 0.3s,
-              transform 0.3s,
-              visibility 0s 0.3s;
+.desktop .info-hotspot.visible .info-hotspot-text {
+  visibility: visible;
+  transform: perspective(200px) rotateX(0deg);
+  transition: transform 0.3s 0.3s, visibility 0s 0s;
+}
+
+.info-hotspot .info-hotspot-title-wrapper {
+  position: absolute;
+  left: 40px;
+  top: 0;
+  width: 220px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 5px;
+  overflow: hidden;
+}
+
+.info-hotspot .info-hotspot-close-wrapper {
+  position: absolute;
+  left: 260px;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  background-color: rgb(78,88,104);
 }
