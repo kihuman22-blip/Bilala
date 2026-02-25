@@ -292,7 +292,8 @@
 
     var text = document.createElement('div');
     text.classList.add('info-hotspot-text');
-    // WICHTIG: Erlaubt HTML (Bilder) in der Info-Box
+    
+    // ÜBERARBEITUNG: sanitize() entfernt, damit HTML-Bilder angezeigt werden können
     text.innerHTML = hotspot.text;
 
     wrapper.appendChild(header);
